@@ -2,6 +2,17 @@ package ru.job4j.tracker;
 
 import java.util.Arrays;
 
+/**
+ *  Класс, представляющий собой хранилище заявок.
+ *  Содержит методы:
+ *  - Добавление новой заявки в хранилище (add())
+ *  - Замена заявки на новую по id (replace())
+ *  - Поиск заявки по id (findById())
+ *  - Поиск заявки по наименованию (findByName())
+ *  - Метод возвращающий список всех заявок (findAll())
+ *  - Удаление заявки по id (delete())
+ */
+
 public class Tracker {
     private final Item[] items = new Item[100];
     private int ids = 1;
