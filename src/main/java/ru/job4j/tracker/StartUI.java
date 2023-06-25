@@ -5,7 +5,14 @@ import java.util.Scanner;
 /**
  *  Класс, представляющий меню для приложения "Tracker".
  *  Метод init() - инициализирует приложение и запускает выполнение различных пользовательских действий;
- *  Метод showMenu() - выводит на экран меню доступных пользовательских действий;
+ *  Метод showMenu() - выводит на экран меню доступных пользовательских действий:
+ *  0. Add new Item       (Добавление заявки)
+ *  1. Show all items     (Показать все заявки)
+ *  2. Edit item          (Замена заявки)
+ *  3. Delete item        (Удаление заявки)
+ *  4. Find item by id    (Поиск заявки по id)
+ *  5. Find items by name (Поиск заявки по имени)
+ *  6. Exit Program       (Выход из программы)
  */
 public class StartUI {
     public void init(Scanner scanner, Tracker tracker) {
@@ -14,9 +21,24 @@ public class StartUI {
             showMenu();
             System.out.print("Select: ");
             int select = Integer.parseInt(scanner.nextLine());
-            if (select != 6) {
-                System.out.println("Пользователь выбрал: " + select);
-            } else {
+            if (select == 0) {
+                System.out.println("=== Create a new Item ===");
+                System.out.print("Enter name: ");
+                String name = scanner.nextLine();
+                Item item = new Item(name);
+                tracker.add(item);
+                System.out.println("Добавленная заявка: " + item);
+            } else if (select == 1) {
+                System.out.println("=== Show all items ===");
+                Item[] items = tracker.findAll();
+                if (items.length > 0) {
+                    for (Item item : items) {
+                        System.out.println(item);
+                    }
+                } else {
+                    System.out.println("Хранилище еще не содержит заявок");
+                }
+            } else if (select == 6) {
                 run = false;
             }
         }
